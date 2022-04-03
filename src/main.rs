@@ -47,20 +47,16 @@ fn main() {
 
 // implicit return, without return keyword or semi-colon
 fn operate(operator: char, first_number: f32, second_number: f32) -> f32 {
-  if operator == '+' {
-    first_number + second_number
-  } else if operator == '-' {
-    first_number - second_number
-  } else if operator == '/' {
-    first_number / second_number
-  } else if operator == '*' {
-    first_number * second_number
-  } else {
-    0.0
+  // pattern matching on operator
+  match operator {
+    '+' => first_number + second_number,
+    '-' => first_number - second_number,
+    '*' | 'x' | 'X' => first_number * second_number, // bitwise OR extends match case
+    '/' => first_number / second_number,
+    _ => panic!("Invalid operator used.") //base case
   }
 }
 
 fn output(first_number: f32, operator: char, second_number: f32, result: f32) -> String {
   format!("{} {} {} = {}", first_number, operator, second_number, result)
-}
 }
